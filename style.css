@@ -1,0 +1,110 @@
+:root {
+  --bg: #14213d;
+  --panel: #1d2e52;
+  --line: #3a4d7a;
+  --text: #f1f5ff;
+  --muted: #9fb0d6;
+  --x: #ffb703;
+  --o: #4cc9f0;
+  --win: #2ec4b6;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+.app {
+  width: min(92vw, 380px);
+  padding: 24px 0;
+  text-align: center;
+}
+
+h1 {
+  margin: 0 0 18px;
+  font-size: 2rem;
+  letter-spacing: 0.5px;
+}
+
+.scoreboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.score {
+  background: var(--panel);
+  border-radius: 10px;
+  padding: 8px 4px;
+  border-bottom: 3px solid var(--line);
+}
+.score span { display: block; font-size: 0.8rem; color: var(--muted); }
+.score strong { font-size: 1.5rem; }
+#score-x { border-color: var(--x); }
+#score-o { border-color: var(--o); }
+
+#status {
+  min-height: 1.6em;
+  margin: 0 0 14px;
+  font-size: 1.15rem;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  background: var(--line);
+  padding: 8px;
+  border-radius: 14px;
+}
+
+.cell {
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 8px;
+  background: var(--panel);
+  font: inherit;
+  font-size: clamp(2.5rem, 14vw, 4rem);
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--text);
+  transition: background 0.15s;
+}
+.cell:hover:not(:disabled) { background: #26396a; }
+.cell:focus-visible, .btn:focus-visible { outline: 3px solid var(--text); outline-offset: 2px; }
+.cell:disabled { cursor: not-allowed; }
+.cell.x { color: var(--x); }
+.cell.o { color: var(--o); }
+.cell.win { background: var(--win); color: var(--bg); }
+
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.btn {
+  padding: 10px 18px;
+  border: 2px solid var(--text);
+  border-radius: 8px;
+  background: var(--text);
+  color: var(--bg);
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn-ghost { background: transparent; color: var(--text); }
+.btn:hover { opacity: 0.85; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
